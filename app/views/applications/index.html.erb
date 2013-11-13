@@ -1,0 +1,59 @@
+<h1>Listing applications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Name</th>
+      <th>Servers</th>
+      <th>Tiers</th>
+      <th>Style</th>
+      <th>Provider</th>
+      <th>Customization</th>
+      <th>Consumer</th>
+      <th>Consumption</th>
+      <th>Transport</th>
+      <th>Integration</th>
+      <th>Inhouse</th>
+      <th>Contracted</th>
+      <th>Criticality</th>
+      <th>Sensitivity</th>
+      <th>Regulatory</th>
+      <th>Constraint</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applications.each do |application| %>
+      <tr>
+        <td><%= application.customer_id %></td>
+        <td><%= application.name %></td>
+        <td><%= application.servers %></td>
+        <td><%= application.tiers %></td>
+        <td><%= application.style %></td>
+        <td><%= application.provider %></td>
+        <td><%= application.customization %></td>
+        <td><%= application.consumer %></td>
+        <td><%= application.consumption %></td>
+        <td><%= application.transport %></td>
+        <td><%= application.integration %></td>
+        <td><%= application.inhouse %></td>
+        <td><%= application.contracted %></td>
+        <td><%= application.criticality %></td>
+        <td><%= application.sensitivity %></td>
+        <td><%= application.regulatory %></td>
+        <td><%= application.constraint %></td>
+        <td><%= link_to 'Show', application %></td>
+        <td><%= link_to 'Edit', edit_application_path(application) %></td>
+        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application', new_application_path %>

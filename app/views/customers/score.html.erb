@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<table border="1" cellpadding="1">
+    <thead>
+        <tr>
+            <th>Application</th>
+            <th>Servers</th>
+            <th>Tiers</th>
+            <th>Arch Style</th>
+            <th>Provider</th>
+            <th>Customization</th>
+            <th>Consumer</th>
+            <th>Consumption</th>
+            <th>Transport</th>
+            <th>Integration</th>
+            <th>In-House</th>
+            <th>Extrernally Contracted</th>
+            <th>Total Complexity Score</th>
+            <th> </th>
+            <th>Biz Criticality</th>
+            <th>Data Sensitivity</th>
+            <th>Regulatory</th>
+            <th>Constraint</th>
+            <th>Total Risk Score</th>
+        </tr>
+    </thead>
+    <tbody>
+<% @complexity_scores.each do |name, c| %>
+    <tr>
+        <td><%= name %></td>
+        <td><%= c['servers'] %></td>
+        <td><%= c['tiers'] %></td>
+        <td><%= c['archStyle'] %></td>
+        <td><%= c['provider'] %></td>
+        <td><%= c['customization'] %></td>
+        <td><%= c['consumer'] %></td>
+        <td><%= c['consumption'] %></td>
+        <td><%= c['transport'] %></td>
+        <td><%= c['integration'] %></td>
+        <td><%= c['inhouse'] %></td>
+        <td><%= c['contracted'] %></td>
+        <td><%= c['totalScore'] %></td>
+        <td> </td>
+
+        <td><%= @risk_scores[name]['criticality'] %></td>
+        <td><%= @risk_scores[name]['sensitivity'] %></td>
+        <td><%= @risk_scores[name]['regulatory'] %></td>
+        <td><%= @risk_scores[name]['constraint'] %></td>
+        <td><%= @risk_scores[name]['totalScore'] %></td>
+
+    </tr>
+<% end %>
+    <tbody>
+</table>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

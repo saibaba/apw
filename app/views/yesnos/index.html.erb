@@ -1,0 +1,29 @@
+<h1>Listing yesnos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Share</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @yesnos.each do |yesno| %>
+      <tr>
+        <td><%= yesno.name %></td>
+        <td><%= yesno.share %></td>
+        <td><%= link_to 'Show', yesno %></td>
+        <td><%= link_to 'Edit', edit_yesno_path(yesno) %></td>
+        <td><%= link_to 'Destroy', yesno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Yesno', new_yesno_path %>

@@ -1,0 +1,138 @@
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :servers %><br>
+    <%= f.number_field :servers %>
+  </div>
+  <div class="field">
+    <%= f.label :tiers %><br>
+    <%= f.number_field :tiers %>
+  </div>
+  <div class="field">
+    <%= f.label :style %><br>
+    <!-- <%= f.text_field :style %> -->
+    <select name="application[style]" >
+        <option>Client/Server</option>
+        <option>Legacy</option>
+        <option>N-tier</option>
+        <option>SOA</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :provider %><br>
+    <select name="application[provider]" >
+        <option>3rd party</option>
+        <option>Home-grown</option>
+        <option>Pre-packaged</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :customization %><br>
+    <select name="application[customization]" >
+        <option>VERY LOW</option>
+        <option>LOW</option>
+        <option>MODERATE</option>
+        <option>HIGH</option>
+        <option>VERY HIGH</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :consumer %><br>
+    <select name="application[consumer]" >
+        <option>Customer</option>
+        <option>Internal</option>
+        <option>Partner</option>
+        <option>Internal+Partner</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :consumption %><br>
+    <select name="application[consumption]" >
+        <option>API</option>
+        <option>Browser</option>
+        <option>Fat client</option>
+        <option>Mobile APP</option>
+        <option>Other</option>
+        <option>SSH/Telnet/RDP</option>
+        <option>TTY</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :transport %><br>
+    <select name="application[transport]" >
+        <option>Internet/IPSec</option>
+        <option>Internet/Std</option>
+        <option>LAN</option>
+        <option>LL/SONET</option>
+        <option>MPLS</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :integration %><br>
+    <select name="application[integration]" >
+        <option>VERY LOW</option>
+        <option>LOW</option>
+        <option>MODERATE</option>
+        <option>HIGH</option>
+        <option>VERY HIGH</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :inhouse %><br>
+    <select name="application[inhouse]" >
+        <option>YES</option>
+        <option>NO</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :contracted %><br>
+    <select name="application[contracted]" >
+        <option>YES</option>
+        <option>NO</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :criticality %><br>
+    <select name="application[criticality]" >
+        <option>Tier-0</option>
+        <option>Tier-1</option>
+        <option>Tier-2</option>
+        <option>Tier-3</option>
+        <option>Tier-4</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :sensitivity %><br>
+    <select name="application[sensitivity]" >
+        <option>VERY LOW</option>
+        <option>LOW</option>
+        <option>MODERATE</option>
+        <option>HIGH</option>
+        <option>VERY HIGH</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :regulatory %><br>
+    <select name="application[regulatory]" >
+        <option>FISMA</option>
+        <option>HIPAA</option>
+        <option>PCI-DSS</option>
+        <option>SOX</option>
+        <option>NONE</option>
+        <option>OTHER</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :constraint %><br>
+    <select name="application[constraint]" >
+        <option>&lt; 3 months</option>
+        <option>3-6 months</option>
+        <option>6-12 months</option>
+        <option>12-24 months</option>
+        <option>&gt; 24 months</option>
+        <option>NONE</option>
+    </select>
+  </div>

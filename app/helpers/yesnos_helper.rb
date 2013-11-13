@@ -1,0 +1,2 @@
+module YesnosHelper
+end

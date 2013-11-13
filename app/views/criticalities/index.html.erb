@@ -1,0 +1,29 @@
+<h1>Listing criticalities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Share</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @criticalities.each do |criticality| %>
+      <tr>
+        <td><%= criticality.name %></td>
+        <td><%= criticality.share %></td>
+        <td><%= link_to 'Show', criticality %></td>
+        <td><%= link_to 'Edit', edit_criticality_path(criticality) %></td>
+        <td><%= link_to 'Destroy', criticality, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Criticality', new_criticality_path %>

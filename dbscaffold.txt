@@ -1,0 +1,13 @@
+rails generate scaffold Application name:string servers:integer tiers:integer style:archstyle_id provider:provider_id customization:rating_id consumer:consumer_id consumption:consumption_id transport:transport_id integration:rating_id inhouse:yesno_id contracted:yesno_id criticality:criticality_id sensitivity:rating_id regulatory:regulatory_id constraint:window_id
+  815  rails generate scaffold regulatory name:string share:decimal
+  816  rails generate scaffold consumer name:string share:decimal
+  817  rails generate scaffold consumption name:string share:decimal
+  818  rails generate scaffold transport name:string share:decimal
+  819  rails generate scaffold rating name:string share:decimal
+  820  rails generate scaffold window name:string share:decimal
+  821  rails generate scaffold yesno name:string share:decimal
+  822  #rails generate scaffold Application name:string servers:integer tiers:tier_id 
+  825  rails generate scaffold Application name:string servers:integer tiers:integer style:string provider:string customization:string consumer:string consumption:string transport:string integration:string inhouse:string contracted:string criticality:string sensitivity:string regulatory:string constraint:string
+  826  echo rails generate scaffold Application name:string servers:integer tiers:integer style:archstyle_id provider:provider_id customization:rating_id consumer:consumer_id consumption:consumption_id transport:transport_id integration:rating_id inhouse:yesno_id contracted:yesno_id criticality:criticality_id sensitivity:rating_id regulatory:regulatory_id constraint:window_id >> dbscaffold.txt
+
+rails generate scaffold Application name:string servers:integer tiers:integer style:string provider:string customization:string consumer:string consumption:string transport:string integration:string inhouse:string contracted:string criticality:string sensitivity:string regulatory:string constraint:string

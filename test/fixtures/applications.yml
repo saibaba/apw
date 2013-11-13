@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  name: MyString
+  servers: 1
+  tiers: 1
+  style: MyString
+  provider: MyString
+  customization: MyString
+  consumer: MyString
+  consumption: MyString
+  transport: MyString
+  integration: MyString
+  inhouse: MyString
+  contracted: MyString
+  criticality: MyString
+  sensitivity: MyString
+  regulatory: MyString
+  constraint: MyString
+
+two:
+  customer_id: 1
+  name: MyString
+  servers: 1
+  tiers: 1
+  style: MyString
+  provider: MyString
+  customization: MyString
+  consumer: MyString
+  consumption: MyString
+  transport: MyString
+  integration: MyString
+  inhouse: MyString
+  contracted: MyString
+  criticality: MyString
+  sensitivity: MyString
+  regulatory: MyString
+  constraint: MyString

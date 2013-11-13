@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @criticality.name %>
+</p>
+
+<p>
+  <strong>Share:</strong>
+  <%= @criticality.share %>
+</p>
+
+<%= link_to 'Edit', edit_criticality_path(@criticality) %> |
+<%= link_to 'Back', criticalities_path %>

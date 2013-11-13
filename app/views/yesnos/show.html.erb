@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @yesno.name %>
+</p>
+
+<p>
+  <strong>Share:</strong>
+  <%= @yesno.share %>
+</p>
+
+<%= link_to 'Edit', edit_yesno_path(@yesno) %> |
+<%= link_to 'Back', yesnos_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @regulatory.name %>
+</p>
+
+<p>
+  <strong>Share:</strong>
+  <%= @regulatory.share %>
+</p>
+
+<%= link_to 'Edit', edit_regulatory_path(@regulatory) %> |
+<%= link_to 'Back', regulatories_path %>

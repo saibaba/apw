@@ -1,0 +1,1 @@
+json.extract! @application, :customer_id, :name, :servers, :tiers, :style, :provider, :customization, :consumer, :consumption, :transport, :integration, :inhouse, :contracted, :criticality, :sensitivity, :regulatory, :constraint, :created_at, :updated_at
