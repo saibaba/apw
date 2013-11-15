@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+
+  <div id="wrap">
+
+  <div id="main">
   <div class="field">
     <%= f.label :customer_id %><br>
     <%= f.number_field :customer_id %>
@@ -111,6 +115,10 @@
         <option>NO</option>
     </select>
   </div>
+  </div>
+
+  <div id="sidebar">
+   
   <div class="field">
     <%= f.label :criticality %><br>
     <select name="application[criticality]" >
@@ -153,7 +161,16 @@
         <option>NONE</option>
     </select>
   </div>
+
+  </div>
+
+
+  <div id="footer">
   <div class="actions">
     <%= f.submit %>
   </div>
+  </div>
+
+  </div>
+
 <% end %>

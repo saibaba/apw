@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -57,6 +58,16 @@
 <% end %>
     <tbody>
 </table>
+<%= javascript_include_tag "FusionCharts"%>
+<%
+    str_xml = render :file => "customers/complexity_data"
+    render_chart '/FusionCharts/FCF_Bar2D.swf' , '', str_xml, 'ComplexityScore' ,  800 , 500,  false, {:renderer => "javascript"} do -%>
+<%  end -%>
+
+<%
+    str_xml = render :file => "customers/risk_data"
+    render_chart '/FusionCharts/FCF_Bar2D.swf' , '', str_xml, 'RiskScore' ,  800 ,  500, false, {:renderer => "javascript"} do -%>
+<%  end -%>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

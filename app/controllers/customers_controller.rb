@@ -1,4 +1,6 @@
 require "apw"
+require 'fusioncharts_helper'
+include FusionChartsHelper 
 
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
@@ -76,6 +78,12 @@ class CustomersController < ApplicationController
       }
       puts @complexity_scores
       puts @risk_scores
+      names_array = []
+      bar_data = []
+      @complexity_scores.each do |app_name, complexities|
+          names_array << app_name
+          bar_data << complexities['totallComplexity']
+      end
   end
 
   private

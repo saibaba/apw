@@ -127,7 +127,7 @@ def complexityScores(servers, tiers, archStyle, provider, customization, consume
     rv.each { |k,v| 
         total += v
     }
-    rv["totalScore"] = total
+    rv["totalScore"] = total.round(3)
     return rv
 end
 
@@ -142,7 +142,7 @@ def riskScores(biz, sensitivity, regulatory, constraint)
     rv.each { |k,v| 
         total += v
     }
-    rv["totalScore"] = total
+    rv["totalScore"] = total.round(3)
     return rv
 end
 
