@@ -1,22 +1,23 @@
 <h1>Listing customers</h1>
 
-<table>
+<table style="width:30%" class="rs-list-table">
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.name %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to customer.name, customer, :class => "rs-link" %></td>
+        <td>
+          <div class="rs-btn-group">
+            <%= link_to '', edit_customer_path(customer), :class => "rs-edit" %>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' }  %>
+          </div>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +25,7 @@
 
 <br>
 
-<%= link_to 'New Customer', new_customer_path %>
+<div class="rs-btn-group">
+  <%= link_to 'New Customer', new_customer_path, :class => "rs-btn rs-btn-primary" %>
+  <a href="/customers" class="rs-btn rs-btn-link">Cancel</a>
+</div>

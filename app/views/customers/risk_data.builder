@@ -2,8 +2,7 @@ xml = Builder::XmlMarkup.new(:indent=>0)
 options = {
  :caption=>'Risk',
  :subcaption=>'For Customer '+ @customer.name   ,
- :xAxisName=>'Risk',
- :yAxisName=>'Application',
+ :yAxisName=>'Score',
  :showValues=>'1'
 }
 

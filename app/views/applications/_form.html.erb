@@ -1,4 +1,4 @@
-<%= form_for(@application) do |f| %>
+<%= form_for(@application, :html => {:class => "rs-form-horizontal"} ) do |f| %>
   <% if @application.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
@@ -11,155 +11,123 @@
     </div>
   <% end %>
 
+    <div id="wrap">
+      <div id="main">
+        <div class="rs-control-group">
+          <%= f.label :customer_id,  :class => "rs-control-label" %>
+          <div class="rs-controls">
+            <%= f.number_field :customer_id %>
+          </div>
+       </div>
 
-  <div id="wrap">
+       <div class="rs-control-group">
+         <%= f.label :name , :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.text_field :name, :class => "rs-input-large"  %>
+         </div>
+       </div>
 
-  <div id="main">
-  <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.number_field :customer_id %>
+       <div class="rs-control-group">
+         <%= f.label :servers , :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.number_field :servers, :class => "rs-input-small" %>
+         </div>
+       </div>
+
+       <div class="rs-control-group">
+         <%= f.label :tiers , :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.number_field :tiers , :class => "rs-input-small" %>
+         </div>
+       </div>
+
+       <div class="rs-control-group">
+         <%= f.label :style , :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.select :style , Application::STYLES %>
+         </div>
+       </div>
+
+       <div class="rs-control-group">
+         <%= f.label :provider, :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.select :provider, Application::PROVIDERS %>
+         </div>
+       </div>
+
+       <div class="rs-control-group">
+         <%= f.label :customization, :class => "rs-control-label" %>
+         <div class="rs-controls">
+           <%= f.select :customization, Application::RATING %>
+         </div>
+       </div>
+
+       <div class="rs-control-group">
+    <%= f.label :consumer, :class => "rs-control-label"  %>
+         <div class="rs-controls">
+    <%= f.select :consumer, Application::CONSUMER_TYPES %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="rs-control-group">
+    <%= f.label :consumption, :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :consumption, Application::CONSUMPTION_TYPES %>
   </div>
-  <div class="field">
-    <%= f.label :servers %><br>
-    <%= f.number_field :servers %>
   </div>
-  <div class="field">
-    <%= f.label :tiers %><br>
-    <%= f.number_field :tiers %>
+
+  <div class="rs-control-group">
+    <%= f.label :transport , :class => "rs-control-label"%>
+         <div class="rs-controls">
+    <%= f.select :transport, Application::TRANSPORT_TYPES %>
   </div>
-  <div class="field">
-    <%= f.label :style %><br>
-    <!-- <%= f.text_field :style %> -->
-    <select name="application[style]" >
-        <option>Client/Server</option>
-        <option>Legacy</option>
-        <option>N-tier</option>
-        <option>SOA</option>
-    </select>
   </div>
-  <div class="field">
-    <%= f.label :provider %><br>
-    <select name="application[provider]" >
-        <option>3rd party</option>
-        <option>Home-grown</option>
-        <option>Pre-packaged</option>
-    </select>
+  <div class="rs-control-group">
+    <%= f.label :integration, :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :integration, Application::RATING %>
   </div>
-  <div class="field">
-    <%= f.label :customization %><br>
-    <select name="application[customization]" >
-        <option>VERY LOW</option>
-        <option>LOW</option>
-        <option>MODERATE</option>
-        <option>HIGH</option>
-        <option>VERY HIGH</option>
-    </select>
   </div>
-  <div class="field">
-    <%= f.label :consumer %><br>
-    <select name="application[consumer]" >
-        <option>Customer</option>
-        <option>Internal</option>
-        <option>Partner</option>
-        <option>Internal+Partner</option>
-    </select>
+
+  <div class="rs-control-group">
+    <%= f.label :inhouse , :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :inhouse, Application::YES_NO_TYPES %>
   </div>
-  <div class="field">
-    <%= f.label :consumption %><br>
-    <select name="application[consumption]" >
-        <option>API</option>
-        <option>Browser</option>
-        <option>Fat client</option>
-        <option>Mobile APP</option>
-        <option>Other</option>
-        <option>SSH/Telnet/RDP</option>
-        <option>TTY</option>
-    </select>
   </div>
-  <div class="field">
-    <%= f.label :transport %><br>
-    <select name="application[transport]" >
-        <option>Internet/IPSec</option>
-        <option>Internet/Std</option>
-        <option>LAN</option>
-        <option>LL/SONET</option>
-        <option>MPLS</option>
-    </select>
+  <div class="rs-control-group">
+    <%= f.label :contracted , :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :contracted, Application::YES_NO_TYPES %>
   </div>
-  <div class="field">
-    <%= f.label :integration %><br>
-    <select name="application[integration]" >
-        <option>VERY LOW</option>
-        <option>LOW</option>
-        <option>MODERATE</option>
-        <option>HIGH</option>
-        <option>VERY HIGH</option>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :inhouse %><br>
-    <select name="application[inhouse]" >
-        <option>YES</option>
-        <option>NO</option>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :contracted %><br>
-    <select name="application[contracted]" >
-        <option>YES</option>
-        <option>NO</option>
-    </select>
   </div>
   </div>
 
   <div id="sidebar">
    
-  <div class="field">
-    <%= f.label :criticality %><br>
-    <select name="application[criticality]" >
-        <option>Tier-0</option>
-        <option>Tier-1</option>
-        <option>Tier-2</option>
-        <option>Tier-3</option>
-        <option>Tier-4</option>
-    </select>
+  <div class="rs-control-group">
+    <%= f.label :criticality , :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :criticality, Application::BIZ_CRITICALITY_TYPES %>
   </div>
-  <div class="field">
-    <%= f.label :sensitivity %><br>
-    <select name="application[sensitivity]" >
-        <option>VERY LOW</option>
-        <option>LOW</option>
-        <option>MODERATE</option>
-        <option>HIGH</option>
-        <option>VERY HIGH</option>
-    </select>
   </div>
-  <div class="field">
-    <%= f.label :regulatory %><br>
-    <select name="application[regulatory]" >
-        <option>FISMA</option>
-        <option>HIPAA</option>
-        <option>PCI-DSS</option>
-        <option>SOX</option>
-        <option>NONE</option>
-        <option>OTHER</option>
-    </select>
+  <div class="rs-control-group">
+    <%= f.label :sensitivity , :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :sensitivity, Application::RATING %>
   </div>
-  <div class="field">
-    <%= f.label :constraint %><br>
-    <select name="application[constraint]" >
-        <option>&lt; 3 months</option>
-        <option>3-6 months</option>
-        <option>6-12 months</option>
-        <option>12-24 months</option>
-        <option>&gt; 24 months</option>
-        <option>NONE</option>
-    </select>
+  </div>
+  <div class="rs-control-group">
+    <%= f.label :regulatory, :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :regulatory, Application::REGULATORY_TYPES %>
+  </div>
+  </div>
+  <div class="rs-control-group">
+    <%= f.label :constraint , :class => "rs-control-label" %>
+         <div class="rs-controls">
+    <%= f.select :constraint, Application::TIME_WINDOWS %>
+  </div>
   </div>
 
   </div>

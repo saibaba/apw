@@ -19,7 +19,10 @@ ApwApp::Application.routes.draw do
 
   resources :providers
 
-  resources :customers
+  resources :customers do
+      resources :applications
+      get 'score', on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

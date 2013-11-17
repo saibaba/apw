@@ -4,7 +4,12 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
-    @applications = Application.all
+    if params[:customer_id]
+        @customer = Customer.find(params[:customer_id])
+        @applications = Application.find_by_sql("select * from applications where customer_id = " + params[:customer_id].to_s)
+    else
+        @applications = Application.all
+    end
   end
 
   # GET /applications/1

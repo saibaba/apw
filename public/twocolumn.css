@@ -11,7 +11,7 @@ background:#c99;
 }
 #main {
 float:left;
-width:400px;
+width:500px;
 padding:10px;
 background:#9c9;
 }
@@ -20,7 +20,7 @@ margin:0 0 1em;
 }
 #sidebar {
 float:right;
-width:230px;
+width:300px;
 padding:10px;
 background:#99c;
 }

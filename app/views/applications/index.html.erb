@@ -1,6 +1,15 @@
-<h1>Listing applications</h1>
+<%= link_to 'New Application', new_application_path, :class => "rs-btn rs-primary" %>
 
-<table>
+<br />
+<br />
+<% if @customer
+%>
+    <h1>Listing applications for customer <%= @customer.name %></h1>
+<%else%>
+    <h1>Listing applications for all customers</h1>
+<% end %>
+
+<table style="font-size:10px;">
   <thead>
     <tr>
       <th>Customer</th>
@@ -20,9 +29,7 @@
       <th>Sensitivity</th>
       <th>Regulatory</th>
       <th>Constraint</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -30,25 +37,27 @@
     <% @applications.each do |application| %>
       <tr>
         <td><%= application.customer_id %></td>
-        <td><%= application.name %></td>
-        <td><%= application.servers %></td>
-        <td><%= application.tiers %></td>
-        <td><%= application.style %></td>
-        <td><%= application.provider %></td>
-        <td><%= application.customization %></td>
-        <td><%= application.consumer %></td>
-        <td><%= application.consumption %></td>
-        <td><%= application.transport %></td>
-        <td><%= application.integration %></td>
-        <td><%= application.inhouse %></td>
-        <td><%= application.contracted %></td>
-        <td><%= application.criticality %></td>
-        <td><%= application.sensitivity %></td>
-        <td><%= application.regulatory %></td>
-        <td><%= application.constraint %></td>
-        <td><%= link_to 'Show', application %></td>
-        <td><%= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="font-size:10px;"><%= link_to application.name, application, :class => "rs-link" %></td>
+        <td style="font-size:10px;" ><%= application.servers %></td>
+        <td style="font-size:10px;" ><%= application.tiers %></td>
+        <td style="font-size:10px;" ><%= application.style %></td>
+        <td style="font-size:10px;" ><%= application.provider %></td>
+        <td style="font-size:10px;" ><%= application.customization %></td>
+        <td style="font-size:10px;" ><%= application.consumer %></td>
+        <td style="font-size:10px;" ><%= application.consumption %></td>
+        <td style="font-size:10px;" ><%= application.transport %></td>
+        <td style="font-size:10px;" ><%= application.integration %></td>
+        <td style="font-size:10px;" ><%= application.inhouse %></td>
+        <td style="font-size:10px;"><%= application.contracted %></td>
+        <td style="font-size:10px;"><%= application.criticality %></td>
+        <td style="font-size:10px;"><%= application.sensitivity %></td>
+        <td style="font-size:10px;"><%= application.regulatory %></td>
+        <td style="font-size:10px;"><%= application.constraint %></td>
+        <td style="font-size:10px;">
+          <div class="rs-btn-group">
+            <%= link_to '', edit_application_path(application), :class => "rs-edit" %>
+            <%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
       </tr>
     <% end %>
   </tbody>
@@ -56,4 +65,3 @@
 
 <br>
 
-<%= link_to 'New Application', new_application_path %>
