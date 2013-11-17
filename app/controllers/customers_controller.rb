@@ -1,6 +1,8 @@
 require "apw"
 require 'fusioncharts_helper'
 include FusionChartsHelper 
+require 'jqplotcharts_helper'
+include JQPlotChartsHelper 
 
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]

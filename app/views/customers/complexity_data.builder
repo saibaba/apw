@@ -4,6 +4,9 @@ options = {
  :subcaption=>'For Customer '+ @customer.name   ,
  :yAxisName=>'Score',
  :showValues=>'1',
+ :exportenabled => "1",
+ :exportatclient =>  "1",
+ :exporthandler => "fcExporter1"
 }
 
 xml.graph(options) do

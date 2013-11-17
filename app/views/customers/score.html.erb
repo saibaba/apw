@@ -1,4 +1,3 @@
-
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -6,6 +5,7 @@
   <%= @customer.name %>
 </p>
 
+<div style="width:100%;height:600px;overflow: auto;">
 <table border="1" cellpadding="1">
     <thead>
         <tr>
@@ -30,8 +30,13 @@
             <th>Total Risk Score</th>
         </tr>
     </thead>
-    <tbody>
-<% @complexity_scores.each do |name, c| %>
+<%
+    complexity_data = []
+    risk_data = []
+    @complexity_scores.each do |name, c|
+        complexity_data << [name, c['totalScore']]
+        risk_data << [name, @risk_scores[name]['totalScore']]
+ %>
     <tr>
         <td><%= name %></td>
         <td><%= c['servers'] %></td>
@@ -56,18 +61,30 @@
 
     </tr>
 <% end %>
-    <tbody>
+    </tbody>
 </table>
-<%= javascript_include_tag "FusionCharts"%>
-<%
-    str_xml = render :file => "customers/complexity_data"
-    render_chart '/FusionCharts/FCF_Bar2D.swf' , '', str_xml, 'ComplexityScore' ,  800 , 500,  false, {:renderer => "javascript"} do -%>
-<%  end -%>
+</div>
 
-<%
-    str_xml = render :file => "customers/risk_data"
-    render_chart '/FusionCharts/FCF_Bar2D.swf' , '', str_xml, 'RiskScore' ,  800 ,  500, false, {:renderer => "javascript"} do -%>
-<%  end -%>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= javascript_include_tag "jquery.jqplot.min"%>
+<%= javascript_include_tag "jqplot.barRenderer.min"%>
+<%= javascript_include_tag "jqplot.categoryAxisRenderer.min"%>
+<%= javascript_include_tag "jqplot.canvasTextRenderer.min" %>
+<%= javascript_include_tag "jqplot.canvasAxisTickRenderer.min" %>
+<%= javascript_include_tag "jqplot.pointLabels.min"%>
+<%= javascript_include_tag "jqplot.dateAxisRenderer.min"%>
+<%= javascript_include_tag "canvas2image"%>
+
+<% 
+    render_jqplot_chart(complexity_data, 'Complexity', 800, 500) 
+%>
+<br />
+<br />
+<%
+
+    render_jqplot_chart(risk_data, 'Risk', 800, 500) 
+%>
+
+<%= link_to '', edit_customer_path(@customer), :class => "rs-edit" %> |
 <%= link_to 'Back', customers_path %>
+
