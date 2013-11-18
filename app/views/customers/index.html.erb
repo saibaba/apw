@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Applications</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @customers.each do |customer| %>
       <tr>
         <td><%= link_to customer.name, customer, :class => "rs-link" %></td>
+        <td><%= link_to 'Applications', customer_applications_url(customer), :class => "rs-link" %></td>
         <td>
           <div class="rs-btn-group">
             <%= link_to '', edit_customer_path(customer), :class => "rs-edit" %>
@@ -27,5 +29,4 @@
 
 <div class="rs-btn-group">
   <%= link_to 'New Customer', new_customer_path, :class => "rs-btn rs-btn-primary" %>
-  <a href="/customers" class="rs-btn rs-btn-link">Cancel</a>
 </div>

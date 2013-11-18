@@ -4,6 +4,8 @@
 %>
 
     <%= link_to 'Export to CSV', customer_applications_path(@customer, :format => "csv" ), :class => "rs-btn rs-primary" %>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <%= link_to 'Score', score_customer_path(@customer), :class => "rs-link" %>
     <br />
     <br />
     <h1>Listing applications for customer <%= @customer.name %></h1>
