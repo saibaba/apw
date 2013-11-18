@@ -1,11 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Customer details:</h2>
 <p>
   <strong>Name:</strong>
   <%= @customer.name %>
+  <br />
+  <strong>Customer ID:</strong>
+  <%= @customer.id %>
 </p>
 
-<%= link_to 'Applications', customer_applications_path(@customer) %> |
-<%= link_to 'Scoring', score_customer_path(@customer) %> |
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<hr />
+<div style="font-size:14px;">
+Manage <%= link_to 'Applications', customer_applications_path(@customer) , :class => "rs-link" %>  for this customer, <br /> <br />
+Or check the <%= link_to 'Score', score_customer_path(@customer), :class => "rs-link" %>  for this customer's applications,  <br /> <br/>
+Or <%= link_to 'Edit', edit_customer_path(@customer), :class => "rs-link" %> the customer details,  <br /> <br />
+Or go <%= link_to 'Back', customers_path , :class => "rs-link"%> to list of customers.
+</div>

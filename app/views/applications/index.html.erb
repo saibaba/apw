@@ -1,18 +1,22 @@
-<%= link_to 'New Application', new_application_path, :class => "rs-btn rs-primary" %>
+<%= link_to 'Add Application', new_application_path, :class => "rs-btn rs-primary" %>
 
-<br />
-<br />
 <% if @customer
 %>
+
+    <%= link_to 'Export to CSV', customer_applications_path(@customer, :format => "csv" ), :class => "rs-btn rs-primary" %>
+    <br />
+    <br />
     <h1>Listing applications for customer <%= @customer.name %></h1>
 <%else%>
+    <br />
+    <br />
     <h1>Listing applications for all customers</h1>
 <% end %>
 
 <table style="font-size:10px;">
   <thead>
     <tr>
-      <th>Customer</th>
+      <th>Customer ID</th>
       <th>Name</th>
       <th>Servers</th>
       <th>Tiers</th>
@@ -63,5 +67,5 @@
   </tbody>
 </table>
 
-<br>
+<br/>
 

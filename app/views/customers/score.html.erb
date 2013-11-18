@@ -2,7 +2,13 @@
 
 <p>
   <strong>Customer Name:</strong>
-  <%= @customer.name %>
+  <%= link_to @customer.name, customer_path(@customer) %>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <%= link_to 'Applications', customer_applications_path(@customer) %>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <a href="#complexity">Graph for Complexity Score</a>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <a href="#risk">Graph for Risk Score</a>
 </p>
 
 <div style="width:100%;height:600px;overflow: auto;">
@@ -75,16 +81,18 @@
 <%= javascript_include_tag "jqplot.dateAxisRenderer.min"%>
 <%= javascript_include_tag "canvas2image"%>
 
+
+<span id="complexity"></span>
+
 <% 
     render_jqplot_chart(complexity_data, 'Complexity', 800, 500) 
 %>
 <br />
 <br />
+<span id="risk"></span>
 <%
 
     render_jqplot_chart(risk_data, 'Risk', 800, 500) 
 %>
 
-<%= link_to '', edit_customer_path(@customer), :class => "rs-edit" %> |
-<%= link_to 'Back', customers_path %>
 

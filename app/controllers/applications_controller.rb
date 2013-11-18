@@ -3,13 +3,24 @@ class ApplicationsController < ApplicationController
 
   # GET /applications
   # GET /applications.json
+  # GET /applications.csv
   def index
     if params[:customer_id]
         @customer = Customer.find(params[:customer_id])
+        #this returns an array
         @applications = Application.find_by_sql("select * from applications where customer_id = " + params[:customer_id].to_s)
     else
+        #this returns a relation class
         @applications = Application.all
     end
+
+    respond_to do |format|
+        format.html
+        # from http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
+        format.csv { render text: to_csv(@applications) }
+        # format.csv { send_data @applications.to_csv }
+    end
+
   end
 
   # GET /applications/1
@@ -76,4 +87,14 @@ class ApplicationsController < ApplicationController
     def application_params
       params.require(:application).permit(:customer_id, :name, :servers, :tiers, :style, :provider, :customization, :consumer, :consumption, :transport, :integration, :inhouse, :contracted, :criticality, :sensitivity, :regulatory, :constraint)
     end
+
+    def to_csv(apps)
+        CSV.generate do |csv|
+            csv << Application.column_names
+            apps.each do |app|
+                csv << app.attributes.values_at(*Application.column_names)
+            end
+        end
+    end
+
 end

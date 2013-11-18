@@ -10,4 +10,31 @@ class Application < ActiveRecord::Base
     BIZ_CRITICALITY_TYPES = [ "Tier-0", "Tier-1", "Tier-2", "Tier-3", "Tier-4"]
     TIME_WINDOWS = [ "< 3 months", "3-6 months", "6-12 months", "12-24 months", "> 24 months", "NONE"]
 
+    validates :customer_id,
+      :name,
+      :servers,
+      :tiers,
+      :style,
+      :provider,
+      :customization,
+      :consumer,
+      :consumption,
+      :transport,
+      :integration,
+      :inhouse,
+      :contracted,
+      :criticality,
+      :sensitivity,
+      :regulatory,
+      :constraint, presence: true
+
+    validates_uniqueness_of :name, :scope => :customer_id
+
+    validates :servers, numericality: { only_integer: true }
+    validates :tiers, numericality: { only_integer: true }
+
+    validates :name, length: { minimum: 2, maximum: 100 }
+
+    validates_inclusion_of :constraint, :in => Application::TIME_WINDOWS
+
 end
