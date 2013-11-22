@@ -39,9 +39,12 @@
 <%
     complexity_data = []
     risk_data = []
+    complexity_risk_data = []
+
     @complexity_scores.each do |name, c|
         complexity_data << [name, c['totalScore']]
         risk_data << [name, @risk_scores[name]['totalScore']]
+        complexity_risk_data << [c['totalScore'], @risk_scores[name]['totalScore'], 1, name]
  %>
     <tr>
         <td><%= name %></td>
@@ -94,5 +97,13 @@
 
     render_jqplot_chart(risk_data, 'Risk', 800, 500) 
 %>
+<br />
+<br />
 
+<%
+
+    render_jqplot_scatter(complexity_risk_data, 'rsk_cplxty', 'Complexity vs. Risk', 800, 500)
+%>
+
+<div id="risk_complexity_scatter_plot_div"></div>
 
