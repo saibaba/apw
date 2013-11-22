@@ -20,6 +20,18 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  1) gem 'capistrano'  is commented in Gemfile
+  2) bundle
+  3) cap install 
+     Above command created:
+     M0310QKAGY% cap install
+     mkdir -p config/deploy
+     create config/deploy.rb
+     create config/deploy/staging.rb
+     create config/deploy/production.rb
+     mkdir -p lib/capistrano/tasks
+     Capified
+   4)
 
 * ...
 

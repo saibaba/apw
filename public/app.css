@@ -1,2 +1,6 @@
 td { font-size:12px; }
-
+.jqplot-yaxis-label {
+    margin-right: 20px;
+    font-size: 11pt;
+    position: absolute;
+}
