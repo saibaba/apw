@@ -8,36 +8,24 @@ def data_to_string(data)
     return data.to_s()
 end
 
-def render_jqplot_scatter_x(data, name, label, width, height)
+def render_jqplot_pie(data, name, width, height)
 
     btn_id = "btn_" + name
     div_id = "div_" + name
 
-
     raw_concat('<div id="' + div_id + '" style="height: ' + height.to_s + 'px;width: ' + width.to_s + 'px; "></div>')
-    raw_concat('<button id="'+btn_id+'"style=";">Save ' + label + '</button><br/>')
+    raw_concat('<button id="'+btn_id+'"style=";">Save ' + name + '</button><br/>')
     raw_concat('<script type="text/javascript">')
 
     raw_concat('$(document).ready(function(){')
 
     raw_concat('var line = ' + data_to_string(data) + ';')
     raw_concat('var plot = $.jqplot("' + div_id + '", [line], {')
-    aaw_concat('          title:"' + label + '",')
-    raw_concat('          series:[ { showLine:false, }],')
-    raw_concat('          seriesDefaults:{ renderer: $.jqplot.BubbleRenderer, rendererOptions: { autoscaleBubbles: false, bubbleGradient: true, bubbleAlpha: 0.5}, pointLabels: {show: true} },')
-    raw_concat('          axes: {')
-    raw_concat('              xaxis: {')
-    raw_concat('                  label: "Risk Score",')
-    raw_concat('                  tickInterval: 0.02,')
-    raw_concat('                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer')
-    raw_concat('              },')
-    raw_concat('              yaxis: {')
-    raw_concat('                  label: "Complexity Score",')
-    raw_concat('                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer')
-    raw_concat('              }')
-    raw_concat('          }')
-    raw_concat('        })')
+    raw_concat('        title:"' + name + '",' )
+    raw_concat('        seriesDefaults:{ renderer: $.jqplot.PieRenderer, rendererOptions: { showDataLabels: true} },')
+    raw_concat('        legend: { show: true , location: "e" },')
     raw_concat('    });')
+    raw_concat('});')
     raw_concat('$("#' + btn_id + '").click(function () {')
     raw_concat('           $("#' + div_id + '").jqplotSaveImage()')
     raw_concat('    });')

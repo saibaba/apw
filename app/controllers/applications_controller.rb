@@ -85,7 +85,7 @@ class ApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:customer_id, :name, :servers, :tiers, :style, :provider, :customization, :consumer, :consumption, :transport, :integration, :inhouse, :contracted, :criticality, :sensitivity, :regulatory, :constraint)
+      params.require(:application).permit(:customer_id, :name, :servers, :tiers, :style, :provider, :customization, :consumer, :consumption, :transport, :integration, :inhouse, :contracted, :criticality, :sensitivity, :regulatory, :constraint, :bucket, :phase, :solution)
     end
 
     def to_csv(apps)

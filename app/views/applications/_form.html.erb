@@ -13,6 +13,7 @@
 
     <div id="wrap">
       <div id="main">
+      <h2>Complexity Information</h2>
         <div class="rs-control-group">
           <%= f.label :customer_id,  :class => "rs-control-label" %>
           <div class="rs-controls">
@@ -104,34 +105,65 @@
   </div>
 
   <div id="sidebar">
-   
-  <div class="rs-control-group">
-    <%= f.label :criticality , :class => "rs-control-label" %>
-         <div class="rs-controls">
-    <%= f.select :criticality, Application::BIZ_CRITICALITY_TYPES %>
-  </div>
-  </div>
-  <div class="rs-control-group">
-    <%= f.label :sensitivity , :class => "rs-control-label" %>
-         <div class="rs-controls">
-    <%= f.select :sensitivity, Application::RATING %>
-  </div>
-  </div>
-  <div class="rs-control-group">
-    <%= f.label :regulatory, :class => "rs-control-label" %>
-         <div class="rs-controls">
-    <%= f.select :regulatory, Application::REGULATORY_TYPES %>
-  </div>
-  </div>
-  <div class="rs-control-group">
-    <%= f.label :constraint , :class => "rs-control-label" %>
-         <div class="rs-controls">
-    <%= f.select :constraint, Application::TIME_WINDOWS %>
-  </div>
+
+    <div>   
+      <h2>Risk Information</h2>
+      <div class="rs-control-group">
+        <%= f.label :criticality , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :criticality, Application::BIZ_CRITICALITY_TYPES %>
+        </div>
+      </div>
+
+      <div class="rs-control-group">
+        <%= f.label :sensitivity , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :sensitivity, Application::RATING %>
+        </div>
+      </div>
+
+      <div class="rs-control-group">
+        <%= f.label :regulatory, :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :regulatory, Application::REGULATORY_TYPES %>
+        </div>
+      </div>
+
+      <div class="rs-control-group">
+        <%= f.label :constraint , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :constraint, Application::TIME_WINDOWS %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  </div>
 
+  <div id="sidebar2">
+    <div>
+      <h2>Assessment Information</h2>
+      <div class="rs-control-group">
+        <%= f.label :bucket , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :bucket, Application::BUCKET_TYPES %>
+        </div>
+      </div>
+      <div class="rs-control-group">
+        <%= f.label :phase , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :phase, Application::PHASE_TYPES %>
+        </div>
+      </div>
+      <div class="rs-control-group">
+        <%= f.label :solution , :class => "rs-control-label" %>
+        <div class="rs-controls">
+          <%= f.select :solution, Application::SOLUTION_TYPES %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
   <div id="footer">
   <div class="actions">

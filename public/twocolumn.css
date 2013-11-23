@@ -20,9 +20,16 @@ margin:0 0 1em;
 }
 #sidebar {
 float:right;
-width:300px;
+width:500px;
 padding:10px;
 background:#99c;
+}
+#sidebar2 {
+margin-top:30px;
+float:right;
+width:500px;
+padding:10px;
+background:#49c;
 }
 #footer {
 clear:both;

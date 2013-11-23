@@ -69,14 +69,21 @@ class CustomersController < ApplicationController
 
   # GET /customers/:id/score
   def score
+  
+      def nvl(v)
+          return v ? v : "UNKNOWN"
+      end
+
       set_customer
       puts @customer
       applications = Application.find_by_sql("select * from applications where customer_id = " + @customer.id.to_s())
       @complexity_scores = {}
       @risk_scores = {}
+      @assessments = {}
       applications.each { |a|
           @complexity_scores[a.name] =   complexityScores(a.servers.to_i, a.tiers.to_i, a.style, a.provider, a.customization, a.consumer, a.consumption, a.transport, a.integration, a.inhouse, a.contracted)
           @risk_scores[a.name] =  riskScores(a.criticality, a.sensitivity, a.regulatory, a.constraint)
+          @assessments[a.name] = {'bucket' =>  nvl(a.bucket), 'phase' => nvl(a.phase), 'solution' => nvl(a.solution) }
       }
       puts @complexity_scores
       puts @risk_scores

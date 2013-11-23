@@ -4,3 +4,5 @@ td { font-size:12px; }
     font-size: 11pt;
     position: absolute;
 }
+table.jqplot-table-legend, table.jqplot-cursor-legend { width: auto }
+

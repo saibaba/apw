@@ -11,10 +11,17 @@
   <a href="#complexity">Graph for Complexity Score</a>
   <span>&nbsp;&nbsp;&nbsp;</span>
   <a href="#complexity_risk">Scatter Plot for Risk vs. Complexity Score</a>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <a href="#buckets">Buckets</a>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <a href="#phases">Phases</a>
+  <span>&nbsp;&nbsp;&nbsp;</span>
+  <a href="#solutions">Solutions</a>
 </p>
 
-<div style="width:100%;height:600px;overflow: auto;">
-<table border="1" cellpadding="1">
+<!--div style="width:100%;height:600px;overflow: auto;">
+</div-->
+<table id="applications" class="display">
     <thead>
         <tr>
             <th>Application</th>
@@ -39,14 +46,39 @@
         </tr>
     </thead>
 <%
+
+    def update(h, k) 
+        if h.has_key?(k)
+            h[k] += 1
+        else
+            h[k] = 1
+        end
+        return h
+    end
+
+    def hash2array(h) 
+        a = []
+        h.each do |k, v|
+            a << [k, v]
+        end
+        return a
+    end
+
     complexity_data = []
     risk_data = []
     risk_complexity_data = []
+    bucket_data = {}
+    phase_data = {}
+    solution_data = {}
 
     @complexity_scores.each do |name, c|
         complexity_data << [name, c['totalScore']]
         risk_data << [name, @risk_scores[name]['totalScore']]
         risk_complexity_data << [@risk_scores[name]['totalScore'], c['totalScore'], 10, name]
+        bkt = @assessments[name]['bucket']
+        update(bucket_data, bkt)
+        update(phase_data, @assessments[name]['phase'])
+        update(solution_data, @assessments[name]['solution'])
  %>
     <tr>
         <td><%= name %></td>
@@ -74,7 +106,6 @@
 <% end %>
     </tbody>
 </table>
-</div>
 
 
 <%= javascript_include_tag "jquery.jqplot.min"%>
@@ -111,4 +142,28 @@
     render_jqplot_scatter(risk_complexity_data, 'rsk_cplxty', 'Risk vs. Complexity', 'Risk Score', 'Complexity Score', 1000, 800)
 %>
 
-<div id="risk_complexity_scatter_plot_div"></div>
+<span id="buckets"></span>
+<%
+    render_jqplot_pie(hash2array(bucket_data), 'Buckets', 500, 500)
+%>
+
+<span id="phases"></span>
+<%
+    render_jqplot_pie(hash2array(phase_data), 'Phases', 500, 500)
+%>
+
+<span id="solutions"></span>
+<%
+    render_jqplot_pie(hash2array(solution_data), 'Solutions', 500, 500)
+%>
+
+<%= javascript_include_tag "jquery.dataTables.min"%>
+<%= javascript_include_tag "FixedHeader"%>
+
+<script type="text/javascript">
+    var oTable = $('#applications').dataTable( {
+        "sScrollX": "800px",
+        "sScrollY": "600px",
+        "bScrollCollapse" : true
+    });
+</script>

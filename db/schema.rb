@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113083741) do
+ActiveRecord::Schema.define(version: 20131122193254) do
 
   create_table "applications", force: true do |t|
     t.integer  "customer_id"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20131113083741) do
     t.string   "constraint"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bucket"
+    t.string   "phase"
+    t.string   "solution"
   end
 
   create_table "consumers", force: true do |t|

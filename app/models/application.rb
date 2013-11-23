@@ -10,6 +10,10 @@ class Application < ActiveRecord::Base
     BIZ_CRITICALITY_TYPES = [ "Tier-0", "Tier-1", "Tier-2", "Tier-3", "Tier-4"]
     TIME_WINDOWS = [ "< 3 months", "3-6 months", "6-12 months", "12-24 months", "> 24 months", "NONE"]
 
+    BUCKET_TYPES = [ "TRANSITION", "TRANSFORMATION", "DEEP DIVE", "SPECIAL HANDLING", "OUT OF SCOPE", "NONE" ]
+    PHASE_TYPES = [ "PHASE 1", "PHASE 2", "PHASE 3", "NONE" ]
+    SOLUTION_TYPES = ["NO SOLUTION", "PUBLIC CLOUD", "PRIVATE CLOUD", "HYBRID CLOUD", "MANAGED VIRTUALIZATION", "DEDICATED", "COLO" ]
+
     validates :customer_id,
       :name,
       :servers,
@@ -36,5 +40,9 @@ class Application < ActiveRecord::Base
     validates :name, length: { minimum: 2, maximum: 100 }
 
     validates_inclusion_of :constraint, :in => Application::TIME_WINDOWS
+
+    validates_inclusion_of :bucket, :in => Application::BUCKET_TYPES
+    validates_inclusion_of :phase, :in => Application::PHASE_TYPES
+    validates_inclusion_of :solution, :in => Application::SOLUTION_TYPES
 
 end
