@@ -101,4 +101,15 @@
 </p>
 
 <%= link_to 'Edit', edit_application_path(@application) %> |
-<%= link_to 'Back', applications_path %>
+<% if @customer 
+       puts "Found customer"
+       puts @customer
+   else
+       puts "No customer FOUND"
+   end
+%>
+<% if @customer %>
+    <%= link_to 'Back', customer_applications_path(@customer) %>
+<% else %>
+    <%= link_to 'Back', applications_path %>
+<% end %>

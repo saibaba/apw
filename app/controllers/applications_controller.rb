@@ -81,6 +81,9 @@ class ApplicationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_application
       @application = Application.find(params[:id])
+      if params[:customer_id]
+          @customer = Customer.find(params[:customer_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

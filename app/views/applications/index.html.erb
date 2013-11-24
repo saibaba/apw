@@ -15,9 +15,6 @@
     <h1>Listing applications for all customers</h1>
 <% end %>
 
-<!--div style="width:100%;height:600px;overflow: auto;">
-</div -->
-
 <table id="applications" class="display">
   <thead>
     <tr>
@@ -48,32 +45,33 @@
   <tbody>
     <% @applications.each do |application| %>
       <tr>
-        <td style="font-size:10px;width: 100px;">
-          <div class="rs-btn-group">
+        <td>
+          <div class="rs-btn-groupx">
             <%= link_to '', edit_application_path(application), :class => "rs-edit" %>
-            <%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <span style="width:10px"> </span>
+            <%= link_to '', application, method: :delete, :class => "rs-delete", data: { confirm: 'Are you sure?' } %>
           </div>
         </td>
         <td><%= application.customer_id %></td>
-        <td style="font-size:10px;"><%= link_to application.name, application, :class => "rs-link" %></td>
-        <td style="font-size:10px;" ><%= application.servers %></td>
-        <td style="font-size:10px;" ><%= application.tiers %></td>
-        <td style="font-size:10px;" ><%= application.style %></td>
-        <td style="font-size:10px;" ><%= application.provider %></td>
-        <td style="font-size:10px;" ><%= application.customization %></td>
-        <td style="font-size:10px;" ><%= application.consumer %></td>
-        <td style="font-size:10px;" ><%= application.consumption %></td>
-        <td style="font-size:10px;" ><%= application.transport %></td>
-        <td style="font-size:10px;" ><%= application.integration %></td>
-        <td style="font-size:10px;" ><%= application.inhouse %></td>
-        <td style="font-size:10px;"><%= application.contracted %></td>
-        <td style="font-size:10px;"><%= application.criticality %></td>
-        <td style="font-size:10px;"><%= application.sensitivity %></td>
-        <td style="font-size:10px;"><%= application.regulatory %></td>
-        <td style="font-size:10px;"><%= application.constraint %></td>
-        <td style="font-size:10px;"><%= application.bucket %></td>
-        <td style="font-size:10px;"><%= application.phase %></td>
-        <td style="font-size:10px;"><%= application.solution %></td>
+        <td><%= link_to application.name, application, :class => "rs-link" %></td>
+        <td><%= application.servers %></td>
+        <td><%= application.tiers %></td>
+        <td><%= application.style %></td>
+        <td><%= application.provider %></td>
+        <td><%= application.customization %></td>
+        <td><%= application.consumer %></td>
+        <td><%= application.consumption %></td>
+        <td><%= application.transport %></td>
+        <td><%= application.integration %></td>
+        <td><%= application.inhouse %></td>
+        <td><%= application.contracted %></td>
+        <td><%= application.criticality %></td>
+        <td><%= application.sensitivity %></td>
+        <td><%= application.regulatory %></td>
+        <td><%= application.constraint %></td>
+        <td><%= application.bucket %></td>
+        <td><%= application.phase %></td>
+        <td><%= application.solution %></td>
       </tr>
     <% end %>
   </tbody>
@@ -82,7 +80,6 @@
 <br/>
 
 <%= javascript_include_tag "jquery.dataTables.min"%>
-<%= javascript_include_tag "FixedHeader"%>
 
 <script type="text/javascript">
     var oTable = $('#applications').dataTable( { 
@@ -90,5 +87,4 @@
         "sScrollY": "600px",
         "bScrollCollapse" : true
     });
-    //new FixedHeader( oTable );
 </script>

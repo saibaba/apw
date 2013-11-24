@@ -1,6 +1,6 @@
 require "apw"
-require 'fusioncharts_helper'
-include FusionChartsHelper 
+require 'html_helper'
+include HTMLHelper 
 require 'jqplotcharts_helper'
 include JQPlotChartsHelper 
 

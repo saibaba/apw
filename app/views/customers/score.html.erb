@@ -5,22 +5,39 @@
   <%= link_to @customer.name, customer_path(@customer) %>
   <span>&nbsp;&nbsp;&nbsp;</span>
   <%= link_to 'Applications', customer_applications_path(@customer) %>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#risk">Graph for Risk Score</a>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#complexity">Graph for Complexity Score</a>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#complexity_risk">Scatter Plot for Risk vs. Complexity Score</a>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#buckets">Buckets</a>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#phases">Phases</a>
-  <span>&nbsp;&nbsp;&nbsp;</span>
-  <a href="#solutions">Solutions</a>
 </p>
 
-<!--div style="width:100%;height:600px;overflow: auto;">
-</div-->
+
+<%= javascript_include_tag "jquery.jqplot.min"%>
+<%= javascript_include_tag "jqplot.barRenderer.min"%>
+<%= javascript_include_tag "jqplot.categoryAxisRenderer.min"%>
+<%= javascript_include_tag "jqplot.canvasTextRenderer.min" %>
+<%= javascript_include_tag "jqplot.canvasAxisTickRenderer.min" %>
+<%= javascript_include_tag "jqplot.pointLabels.min"%>
+<%= javascript_include_tag "jqplot.dateAxisRenderer.min"%>
+<%= javascript_include_tag "canvas2image"%>
+<%= javascript_include_tag "jqplot.bubbleRenderer.min"%>
+<%= javascript_include_tag "jqplot.cursor.min"%>
+<%= javascript_include_tag "excanvas"%>
+<%= javascript_include_tag "jqplot.pieRenderer.min"%>
+<%= javascript_include_tag "jqplot.pointLabels.min"%>
+<%= javascript_include_tag "jqplot.canvasAxisLabelRenderer.min"%>
+<%= javascript_include_tag "jqplot.highlighter.min"%>
+<%= javascript_include_tag "jquery-ui"%>
+<%= javascript_include_tag "jquery.dataTables.min"%>
+
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Score</a></li>
+        <li><a href="#tabs-2">Risk</a></li>
+        <li><a href="#tabs-3">Complexity</a></li>
+        <li><a href="#tabs-4">Risk vs Complexity</a></li>
+        <li><a href="#tabs-5">Buckets</a></li>
+        <li><a href="#tabs-6">Phases</a></li>
+        <li><a href="#tabs-7">Solution</a></li>
+    </ul>
+    <div id="tabs-1">
 <table id="applications" class="display">
     <thead>
         <tr>
@@ -56,6 +73,14 @@
         return h
     end
 
+    def add(h, k, v)
+        if not h.has_key?(k)
+            h[k] = []
+        end
+        h[k] << [v]
+        return h
+    end
+
     def hash2array(h) 
         a = []
         h.each do |k, v|
@@ -71,15 +96,22 @@
     phase_data = {}
     solution_data = {}
 
+    buckets = {}
+    phases = {}
+    solutions = {}
+
     @complexity_scores.each do |name, c|
         complexity_data << [name, c['totalScore']]
         risk_data << [name, @risk_scores[name]['totalScore']]
         risk_complexity_data << [@risk_scores[name]['totalScore'], c['totalScore'], 10, name]
         bkt = @assessments[name]['bucket']
         update(bucket_data, bkt)
+        add(buckets, bkt, name)
         update(phase_data, @assessments[name]['phase'])
+        add(phases, @assessments[name]['phase'], name)
         update(solution_data, @assessments[name]['solution'])
- %>
+        add(solutions, @assessments[name]['solution'], name)
+%>
     <tr>
         <td><%= name %></td>
         <td><%= c['servers'] %></td>
@@ -107,63 +139,59 @@
     </tbody>
 </table>
 
+    </div>
+    <div id="tabs-2">
+        <% render_jqplot_chart(risk_data, 'Risk', 800, 500)  %>
+    </div>
+    <div id="tabs-3">
+        <% render_jqplot_chart(complexity_data, 'Complexity', 800, 500)  %>
+    </div>
+    <div id="tabs-4">
+        <% render_jqplot_scatter(risk_complexity_data, 'rsk_cplxty', 'Risk vs. Complexity', 'Risk Score', 'Complexity Score', 1000, 800) %>
+    </div>
+    <div id="tabs-5">
+        <% 
+           render_jqplot_pie(hash2array(bucket_data), 'Buckets', 700, 500) 
+           buckets.each do |bucket, apps|
+               render_table("buckets_table", ["Application"], apps, bucket, "display mini")
+           end
+         %>
+    </div>
+    <div id="tabs-6">
+        <% render_jqplot_pie(hash2array(phase_data), 'Phases', 700, 500) 
+           phases.each do |phase, apps|
+               render_table("phases_table", ["Application"], apps, phase, "display mini")
+           end
+        %>
+    </div>
+    <div id="tabs-7">
+        <% render_jqplot_pie(hash2array(solution_data), 'Solutions', 700, 500)
+           solutions.each do |soln, apps|
+               render_table("solutions_table", ["Application"], apps, soln, "display mini")
+           end
+        %>
+    </div>
+</div>
 
-<%= javascript_include_tag "jquery.jqplot.min"%>
-<%= javascript_include_tag "jqplot.barRenderer.min"%>
-<%= javascript_include_tag "jqplot.categoryAxisRenderer.min"%>
-<%= javascript_include_tag "jqplot.canvasTextRenderer.min" %>
-<%= javascript_include_tag "jqplot.canvasAxisTickRenderer.min" %>
-<%= javascript_include_tag "jqplot.pointLabels.min"%>
-<%= javascript_include_tag "jqplot.dateAxisRenderer.min"%>
-<%= javascript_include_tag "canvas2image"%>
-<%= javascript_include_tag "jqplot.bubbleRenderer.min"%>
-<%= javascript_include_tag "jqplot.cursor.min"%>
-<%= javascript_include_tag "excanvas"%>
-<%= javascript_include_tag "jqplot.pieRenderer.min"%>
-<%= javascript_include_tag "jqplot.pointLabels.min"%>
-<%= javascript_include_tag "jqplot.canvasAxisLabelRenderer.min"%>
-<%= javascript_include_tag "jqplot.highlighter.min"%>
-
-<span id="risk"></span>
-<%
-    render_jqplot_chart(risk_data, 'Risk', 800, 500) 
-%>
-<br />
-<br />
-<span id="complexity"></span>
-<% 
-    render_jqplot_chart(complexity_data, 'Complexity', 800, 500) 
-%>
-<br />
-<br />
-
-<span id="complexity_risk"></span>
-<%
-    render_jqplot_scatter(risk_complexity_data, 'rsk_cplxty', 'Risk vs. Complexity', 'Risk Score', 'Complexity Score', 1000, 800)
-%>
-
-<span id="buckets"></span>
-<%
-    render_jqplot_pie(hash2array(bucket_data), 'Buckets', 500, 500)
-%>
-
-<span id="phases"></span>
-<%
-    render_jqplot_pie(hash2array(phase_data), 'Phases', 500, 500)
-%>
-
-<span id="solutions"></span>
-<%
-    render_jqplot_pie(hash2array(solution_data), 'Solutions', 500, 500)
-%>
-
-<%= javascript_include_tag "jquery.dataTables.min"%>
-<%= javascript_include_tag "FixedHeader"%>
+<script>
+    $(function() {
+        $( "#tabs" ).tabs();
+    });
+</script>
 
 <script type="text/javascript">
     var oTable = $('#applications').dataTable( {
         "sScrollX": "800px",
         "sScrollY": "600px",
         "bScrollCollapse" : true
-    });
+        });
+    var sTable = $('table.mini').dataTable( {
+        "sScrollX": "300px",
+        "sScrollY": "300px",
+        "bScrollCollapse" : true,
+        "bSort": false,
+        "bSearchable": false,
+        "bPaginate": false,
+        "bFilter": false
+        });
 </script>
