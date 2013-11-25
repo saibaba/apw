@@ -26,6 +26,7 @@ def render_table(tbl_id, headers, data, caption, clazz)
     end
 
     raw_concat('</tbody></table>')
+
 end
 
 end

@@ -139,6 +139,10 @@
     </tbody>
 </table>
 
+<%
+    puts "Printing complexity data"
+    puts complexity_data
+%>
     </div>
     <div id="tabs-2">
         <% render_jqplot_chart(risk_data, 'Risk', 800, 500)  %>
@@ -152,22 +156,28 @@
     <div id="tabs-5">
         <% 
            render_jqplot_pie(hash2array(bucket_data), 'Buckets', 700, 500) 
+           i = 1
            buckets.each do |bucket, apps|
-               render_table("buckets_table", ["Application"], apps, bucket, "display mini")
+               render_table("buckets_table_"  + i.to_s , ["Application"], apps, bucket, "display mini")
+               i += 1
            end
          %>
     </div>
     <div id="tabs-6">
         <% render_jqplot_pie(hash2array(phase_data), 'Phases', 700, 500) 
+           i = 1
            phases.each do |phase, apps|
-               render_table("phases_table", ["Application"], apps, phase, "display mini")
+               render_table("phases_table_" + i.to_s, ["Application"], apps, phase, "display mini")
+               i += 1
            end
         %>
     </div>
     <div id="tabs-7">
         <% render_jqplot_pie(hash2array(solution_data), 'Solutions', 700, 500)
+           i = 1
            solutions.each do |soln, apps|
-               render_table("solutions_table", ["Application"], apps, soln, "display mini")
+               render_table("solutions_table_" + i.to_s, ["Application"], apps, soln, "display mini")
+               i += 1
            end
         %>
     </div>
@@ -183,8 +193,16 @@
     var oTable = $('#applications').dataTable( {
         "sScrollX": "800px",
         "sScrollY": "600px",
+        "bSort": false,
         "bScrollCollapse" : true
         });
+    $("#applications tbody").click(function(event) { 
+        $(oTable.fnSettings().aoData).each(function() {
+            $(this.nTr).removeClass('row_selected');
+        });
+        $(event.target.parentNode).addClass('row_selected');
+    });
+
     var sTable = $('table.mini').dataTable( {
         "sScrollX": "300px",
         "sScrollY": "300px",

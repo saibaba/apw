@@ -76,7 +76,7 @@ class CustomersController < ApplicationController
 
       set_customer
       puts @customer
-      applications = Application.find_by_sql("select * from applications where customer_id = " + @customer.id.to_s())
+      applications = Application.find_by_sql("select * from applications where customer_id = " + @customer.id.to_s() + " order by id asc")
       @complexity_scores = {}
       @risk_scores = {}
       @assessments = {}
